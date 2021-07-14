@@ -1,9 +1,18 @@
 import cv2
 import imutils
 import datetime
+import time
+
+################################################################
+cameraNo = 0  # CAMERA NUMBER
+frameWidth = 640  # DISPLAY WIDTH
+frameHeight = 480  # DISPLAY HEIGHT
+#################################################################
 
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(cameraNo)
+# cap.set(3, frameWidth)
+# cap.set(4, frameHeight)
 firstFrame = None
 
 while True:
@@ -48,6 +57,12 @@ while True:
             0.45,
             (0, 255, 0),
             1,
+        )
+        cv2.imwrite(
+            "saved-images/{}.jpg".format(
+                str(datetime.datetime.now()).replace(".", "-").replace(":", "-")
+            ),
+            img,
         )
 
     cv2.putText(
